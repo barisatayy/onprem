@@ -1,0 +1,1512 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DigitalPro - Dijital Reklam Ajansı</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Arial", sans-serif;
+        line-height: 1.6;
+        color: #fff;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        overflow-x: hidden;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      /* Navigation */
+      .navbar {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        z-index: 1000;
+        transition: all 0.3s ease;
+      }
+
+      .nav-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 1rem 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .nav-logo {
+        font-size: 1.8rem;
+        font-weight: bold;
+        background: linear-gradient(45deg, #00f5ff, #a855f7);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .nav-menu {
+        display: flex;
+        list-style: none;
+        gap: 2rem;
+      }
+
+      .nav-menu a {
+        color: #fff;
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      .nav-menu a:hover {
+        color: #00f5ff;
+      }
+
+      .hamburger {
+        display: none;
+        flex-direction: column;
+        cursor: pointer;
+      }
+
+      .hamburger span {
+        width: 25px;
+        height: 3px;
+        background: #fff;
+        margin: 3px 0;
+        transition: 0.3s;
+      }
+
+      /* Hero Section */
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        background: linear-gradient(
+          135deg,
+          #667eea 0%,
+          #764ba2 50%,
+          #667eea 100%
+        );
+        overflow: hidden;
+      }
+
+      .hero-particles {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        pointer-events: none;
+      }
+
+      .hero-particles::before {
+        content: "";
+        position: absolute;
+        width: 2px;
+        height: 2px;
+        background: rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        animation: float 6s ease-in-out infinite;
+      }
+
+      .hero-content {
+        text-align: center;
+        max-width: 800px;
+        z-index: 2;
+        animation: fadeInUp 1s ease-out;
+      }
+
+      .hero-icon {
+        margin-bottom: 2rem;
+      }
+
+      .hero-icon i {
+        font-size: 4rem;
+        color: #ffd700;
+      }
+
+      .rotating {
+        animation: rotate 20s linear infinite;
+      }
+
+      .hero-title {
+        font-size: 4rem;
+        font-weight: bold;
+        margin-bottom: 1.5rem;
+        animation: fadeInUp 1s ease-out 0.2s both;
+      }
+
+      .gradient-text {
+        background: linear-gradient(45deg, #00f5ff, #a855f7, #ff6b9d);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .hero-description {
+        font-size: 1.3rem;
+        color: rgba(255, 255, 255, 0.9);
+        margin-bottom: 2.5rem;
+        animation: fadeInUp 1s ease-out 0.4s both;
+      }
+
+      .hero-buttons {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+        animation: fadeInUp 1s ease-out 0.6s both;
+      }
+
+      .btn {
+        padding: 1rem 2rem;
+        border: none;
+        border-radius: 50px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .btn-primary {
+        background: linear-gradient(45deg, #00f5ff, #0080ff);
+        color: white;
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 30px rgba(0, 245, 255, 0.3);
+      }
+
+      .btn-secondary {
+        background: transparent;
+        color: #a855f7;
+        border: 2px solid #a855f7;
+      }
+
+      .btn-secondary:hover {
+        background: #a855f7;
+        color: white;
+        transform: translateY(-2px);
+      }
+
+      .floating-elements {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+      }
+
+      .floating-element {
+        position: absolute;
+        border-radius: 50%;
+        opacity: 0.2;
+        filter: blur(40px);
+      }
+
+      .element-1 {
+        width: 200px;
+        height: 200px;
+        background: linear-gradient(45deg, #ff6b9d, #a855f7);
+        top: 20%;
+        left: 10%;
+        animation: float 6s ease-in-out infinite;
+      }
+
+      .element-2 {
+        width: 300px;
+        height: 300px;
+        background: linear-gradient(45deg, #00f5ff, #0080ff);
+        bottom: 20%;
+        right: 10%;
+        animation: float 8s ease-in-out infinite reverse;
+      }
+
+      /* Services Section */
+      .services {
+        padding: 5rem 0;
+        background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+      }
+
+      .section-header {
+        text-align: center;
+        margin-bottom: 4rem;
+        animation: fadeInUp 1s ease-out;
+      }
+
+      .section-title {
+        font-size: 3.5rem;
+        font-weight: bold;
+        margin-bottom: 1rem;
+        background: linear-gradient(45deg, #00f5ff, #a855f7);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .section-description {
+        font-size: 1.2rem;
+        color: rgba(255, 255, 255, 0.8);
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 2rem;
+      }
+
+      .service-card {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 20px;
+        padding: 2rem;
+        text-align: center;
+        transition: all 0.3s ease;
+        opacity: 0;
+        transform: translateX(-100px);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .service-card[data-animation="right"] {
+        transform: translateX(100px);
+      }
+
+      .service-card.animate {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      .service-card:hover {
+        transform: scale(1.05);
+        border-color: rgba(255, 255, 255, 0.4);
+      }
+
+      .service-card:hover::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(0, 245, 255, 0.2),
+          transparent
+        );
+        transition: left 0.5s ease;
+        left: 100%;
+      }
+
+      .service-icon {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto 1.5rem;
+        background: linear-gradient(45deg, #ff6b9d, #a855f7);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: transform 0.3s ease;
+      }
+
+      .service-card:hover .service-icon {
+        transform: rotate(360deg) scale(1.1);
+      }
+
+      .service-icon i {
+        font-size: 2rem;
+        color: white;
+      }
+
+      .service-card h3 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        color: white;
+      }
+
+      .service-card p {
+        color: rgba(255, 255, 255, 0.8);
+        line-height: 1.6;
+      }
+
+      /* Pricing Section */
+      .pricing {
+        padding: 5rem 0;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      }
+
+      .pricing-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+      }
+
+      .pricing-card {
+        position: relative;
+        border-radius: 20px;
+        padding: 2px;
+        background: linear-gradient(45deg, #00f5ff, #a855f7);
+        transition: all 0.3s ease;
+        height: fit-content;
+      }
+
+      .pricing-card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      }
+
+      .pricing-card::before {
+        content: "";
+        position: absolute;
+        inset: 2px;
+        background: rgba(0, 0, 0, 0.2);
+        border-radius: 18px;
+        backdrop-filter: blur(10px);
+      }
+
+      .pricing-card > * {
+        position: relative;
+        z-index: 1;
+      }
+
+      .green-theme {
+        background: linear-gradient(45deg, #10b981, #059669);
+      }
+
+      .blue-theme {
+        background: linear-gradient(45deg, #3b82f6, #1d4ed8);
+      }
+
+      .purple-theme {
+        background: linear-gradient(45deg, #a855f7, #7c3aed);
+      }
+
+      .orange-theme {
+        background: linear-gradient(45deg, #f97316, #ea580c);
+      }
+
+      .popular {
+        position: relative;
+      }
+
+      .popular-badge {
+        position: absolute;
+        top: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: linear-gradient(45deg, #3b82f6, #00f5ff);
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        z-index: 2;
+      }
+
+      .pricing-header {
+        text-align: center;
+        padding: 2rem;
+        color: white;
+      }
+
+      .pricing-icon {
+        width: 60px;
+        height: 60px;
+        margin: 0 auto 1rem;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .pricing-icon i {
+        font-size: 1.5rem;
+        color: white;
+      }
+
+      .pricing-header h3 {
+        font-size: 1.8rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .pricing-header p {
+        color: rgba(255, 255, 255, 0.8);
+        margin-bottom: 1.5rem;
+      }
+
+      .price {
+        display: flex;
+        align-items: baseline;
+        justify-content: center;
+        gap: 0.5rem;
+      }
+
+      .amount {
+        font-size: 2.5rem;
+        font-weight: bold;
+      }
+
+      .period {
+        color: rgba(255, 255, 255, 0.8);
+      }
+
+      .pricing-features {
+        list-style: none;
+        padding: 0 2rem;
+        margin-bottom: 2rem;
+        flex-grow: 1;
+      }
+
+      .pricing-features li {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 0.8rem;
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 0.9rem;
+      }
+
+      .pricing-features i {
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 0.8rem;
+      }
+
+      .pricing-btn {
+        width: calc(100% - 4rem);
+        margin: 0 2rem 2rem;
+        padding: 1rem;
+        background: rgba(255, 255, 255, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 15px;
+        color: white;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(5px);
+      }
+
+      .pricing-btn:hover {
+        background: rgba(255, 255, 255, 0.3);
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px rgba(255, 255, 255, 0.2);
+      }
+
+      /* Contact Section */
+      .contact {
+        padding: 5rem 0;
+        background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+      }
+
+      .contact-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: start;
+      }
+
+      .contact-info {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+      }
+
+      .contact-item {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1.5rem;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 15px;
+        transition: all 0.3s ease;
+      }
+
+      .contact-item:hover {
+        transform: scale(1.05);
+        border-color: rgba(255, 255, 255, 0.4);
+      }
+
+      .contact-icon {
+        width: 50px;
+        height: 50px;
+        background: linear-gradient(45deg, #00f5ff, #a855f7);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .contact-icon i {
+        color: white;
+        font-size: 1.2rem;
+      }
+
+      .contact-details h4 {
+        color: white;
+        font-size: 1.1rem;
+        margin-bottom: 0.3rem;
+      }
+
+      .contact-details p {
+        color: rgba(255, 255, 255, 0.8);
+      }
+
+      .contact-form {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 20px;
+        padding: 2rem;
+      }
+
+      .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+      }
+
+      .form-group {
+        margin-bottom: 1.5rem;
+      }
+
+      .form-group label {
+        display: block;
+        color: white;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+      }
+
+      .form-group input,
+      .form-group textarea {
+        width: 100%;
+        padding: 1rem;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 10px;
+        color: white;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+      }
+
+      .form-group input::placeholder,
+      .form-group textarea::placeholder {
+        color: rgba(255, 255, 255, 0.6);
+      }
+
+      .form-group input:focus,
+      .form-group textarea:focus {
+        outline: none;
+        border-color: #00f5ff;
+        box-shadow: 0 0 0 2px rgba(0, 245, 255, 0.2);
+      }
+
+      .form-group textarea {
+        resize: vertical;
+        min-height: 120px;
+      }
+
+      /* Footer */
+      .footer {
+        background: linear-gradient(
+          135deg,
+          #1f2937 0%,
+          #374151 50%,
+          #1f2937 100%
+        );
+        position: relative;
+        overflow: hidden;
+      }
+
+      .footer-particles {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        pointer-events: none;
+      }
+
+      .footer-particles::before,
+      .footer-particles::after {
+        content: "";
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        background: rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        animation: twinkle 3s ease-in-out infinite;
+      }
+
+      .footer-particles::before {
+        top: 20%;
+        left: 10%;
+        animation-delay: 0s;
+      }
+
+      .footer-particles::after {
+        top: 60%;
+        right: 20%;
+        animation-delay: 1.5s;
+      }
+
+      .footer-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 3rem;
+        padding: 4rem 0;
+      }
+
+      .footer-section h3,
+      .footer-section h4 {
+        color: white;
+        margin-bottom: 1.5rem;
+      }
+
+      .footer-logo {
+        font-size: 2rem;
+        font-weight: bold;
+        background: linear-gradient(45deg, #00f5ff, #a855f7);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .footer-section p {
+        color: rgba(255, 255, 255, 0.8);
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
+      }
+
+      .footer-contact {
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+      }
+
+      .footer-contact-item {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        color: rgba(255, 255, 255, 0.8);
+      }
+
+      .footer-contact-item i {
+        color: #00f5ff;
+        width: 20px;
+      }
+
+      .footer-section ul {
+        list-style: none;
+      }
+
+      .footer-section ul li {
+        color: rgba(255, 255, 255, 0.8);
+        margin-bottom: 0.8rem;
+        cursor: pointer;
+        transition: color 0.3s ease;
+      }
+
+      .footer-section ul li:hover {
+        color: #a855f7;
+        transform: translateX(5px);
+      }
+
+      .newsletter {
+        display: flex;
+        margin-bottom: 1.5rem;
+      }
+
+      .newsletter input {
+        flex: 1;
+        padding: 0.8rem;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 10px 0 0 10px;
+        color: white;
+      }
+
+      .newsletter input::placeholder {
+        color: rgba(255, 255, 255, 0.6);
+      }
+
+      .newsletter button {
+        padding: 0.8rem 1.2rem;
+        background: linear-gradient(45deg, #00f5ff, #a855f7);
+        border: none;
+        border-radius: 0 10px 10px 0;
+        color: white;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .newsletter button:hover {
+        transform: scale(1.05);
+      }
+
+      .social-links {
+        display: flex;
+        gap: 1rem;
+      }
+
+      .social-links a {
+        width: 40px;
+        height: 40px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: rgba(255, 255, 255, 0.8);
+        transition: all 0.3s ease;
+      }
+
+      .social-links a:hover {
+        background: rgba(255, 255, 255, 0.2);
+        color: white;
+        transform: scale(1.2) rotate(5deg);
+      }
+
+      .footer-bottom {
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 2rem 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .footer-bottom p {
+        color: rgba(255, 255, 255, 0.6);
+      }
+
+      .scroll-top {
+        width: 50px;
+        height: 50px;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        color: #00f5ff;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .scroll-top:hover {
+        background: rgba(0, 245, 255, 0.2);
+        border-color: #00f5ff;
+        transform: scale(1.1);
+      }
+
+      /* Animations */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes rotate {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-20px);
+        }
+      }
+
+      @keyframes twinkle {
+        0%,
+        100% {
+          opacity: 0.3;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 1;
+          transform: scale(1.5);
+        }
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .hamburger {
+          display: flex;
+        }
+
+        .nav-menu {
+          position: fixed;
+          left: -100%;
+          top: 70px;
+          flex-direction: column;
+          background-color: rgba(0, 0, 0, 0.9);
+          width: 100%;
+          text-align: center;
+          transition: 0.3s;
+          padding: 2rem 0;
+        }
+
+        .nav-menu.active {
+          left: 0;
+        }
+
+        .hero-title {
+          font-size: 2.5rem;
+        }
+
+        .hero-buttons {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .section-title {
+          font-size: 2.5rem;
+        }
+
+        .services-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .pricing-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .contact-content {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+
+        .form-row {
+          grid-template-columns: 1fr;
+        }
+
+        .footer-content {
+          grid-template-columns: 1fr;
+          text-align: center;
+        }
+
+        .footer-bottom {
+          flex-direction: column;
+          gap: 1rem;
+          text-align: center;
+        }
+      }
+    </style>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="nav-container">
+        <div class="nav-logo">DigitalPro</div>
+        <ul class="nav-menu">
+          <li><a href="#ana-sayfa">Ana Sayfa</a></li>
+          <li><a href="#hizmetler">Hizmetler</a></li>
+          <li><a href="#fiyatlar">Fiyatlar</a></li>
+          <li><a href="#iletisim">İletişim</a></li>
+        </ul>
+        <div class="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="ana-sayfa" class="hero">
+      <div class="hero-particles"></div>
+      <div class="hero-content">
+        <div class="hero-icon">
+          <i class="fas fa-star rotating"></i>
+        </div>
+        <h1 class="hero-title">
+          Dijital Dünyada<br />
+          <span class="gradient-text">Fark Yaratın</span>
+        </h1>
+        <p class="hero-description">
+          Markanızı dijital alemde zirveye taşıyoruz. Yaratıcı çözümler,
+          etkileyici kampanyalar ve ölçülebilir sonuçlar.
+        </p>
+        <div class="hero-buttons">
+          <button class="btn btn-primary">
+            Hemen Başlayın <i class="fas fa-arrow-right"></i>
+          </button>
+          <button class="btn btn-secondary">Portföyümüzü İnceleyin</button>
+        </div>
+      </div>
+      <div class="floating-elements">
+        <div class="floating-element element-1"></div>
+        <div class="floating-element element-2"></div>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="hizmetler" class="services">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Hizmetlerimiz</h2>
+          <p class="section-description">
+            Dijital pazarlama dünyasında ihtiyacınız olan tüm hizmetleri tek
+            çatı altında sunuyoruz
+          </p>
+        </div>
+        <div class="services-grid">
+          <div class="service-card" data-animation="left">
+            <div class="service-icon">
+              <i class="fas fa-bullhorn"></i>
+            </div>
+            <h3>Sosyal Medya Yönetimi</h3>
+            <p>
+              Markanızın sosyal medya varlığını güçlendirin ve hedef kitlenizle
+              etkileşim kurun.
+            </p>
+          </div>
+          <div class="service-card" data-animation="right">
+            <div class="service-icon">
+              <i class="fas fa-palette"></i>
+            </div>
+            <h3>Kreatif Tasarım</h3>
+            <p>
+              Göz alıcı görsel içerikler ve marka kimliği tasarımları ile fark
+              yaratın.
+            </p>
+          </div>
+          <div class="service-card" data-animation="left">
+            <div class="service-icon">
+              <i class="fas fa-chart-bar"></i>
+            </div>
+            <h3>Dijital Analitik</h3>
+            <p>
+              Veriye dayalı stratejiler ile kampanyalarınızın performansını
+              optimize edin.
+            </p>
+          </div>
+          <div class="service-card" data-animation="right">
+            <div class="service-icon">
+              <i class="fas fa-mobile-alt"></i>
+            </div>
+            <h3>Mobil Pazarlama</h3>
+            <p>
+              Mobil platformlarda etkili kampanyalar ile müşterilerinize ulaşın.
+            </p>
+          </div>
+          <div class="service-card" data-animation="left">
+            <div class="service-icon">
+              <i class="fas fa-globe"></i>
+            </div>
+            <h3>Web Geliştirme</h3>
+            <p>
+              Modern ve kullanıcı dostu web siteleri ile dijital varlığınızı
+              güçlendirin.
+            </p>
+          </div>
+          <div class="service-card" data-animation="right">
+            <div class="service-icon">
+              <i class="fas fa-bolt"></i>
+            </div>
+            <h3>Performans Pazarlama</h3>
+            <p>
+              ROI odaklı kampanyalar ile yatırımınızın karşılığını maksimize
+              edin.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="fiyatlar" class="pricing">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Abonelik Paketleri</h2>
+          <p class="section-description">
+            İhtiyaçlarınıza uygun paketi seçin ve dijital dönüşüm yolculuğunuza
+            başlayın
+          </p>
+        </div>
+        <div class="pricing-grid">
+          <div class="pricing-card green-theme">
+            <div class="pricing-header">
+              <div class="pricing-icon">
+                <i class="fas fa-star"></i>
+              </div>
+              <h3>Başlangıç</h3>
+              <p>Küçük işletmeler için ideal</p>
+              <div class="price">
+                <span class="amount">₺2.500</span>
+                <span class="period">/ay</span>
+              </div>
+            </div>
+            <ul class="pricing-features">
+              <li>
+                <i class="fas fa-check"></i> Sosyal medya yönetimi (2 platform)
+              </li>
+              <li><i class="fas fa-check"></i> Aylık 20 gönderi</li>
+              <li><i class="fas fa-check"></i> Temel analitik rapor</li>
+              <li><i class="fas fa-check"></i> Email desteği</li>
+              <li><i class="fas fa-check"></i> Marka kimliği tasarımı</li>
+            </ul>
+            <button class="pricing-btn">Paketi Seç</button>
+          </div>
+
+          <div class="pricing-card blue-theme popular">
+            <div class="popular-badge">En Popüler</div>
+            <div class="pricing-header">
+              <div class="pricing-icon">
+                <i class="fas fa-bolt"></i>
+              </div>
+              <h3>Profesyonel</h3>
+              <p>Büyüyen işletmeler için</p>
+              <div class="price">
+                <span class="amount">₺4.500</span>
+                <span class="period">/ay</span>
+              </div>
+            </div>
+            <ul class="pricing-features">
+              <li>
+                <i class="fas fa-check"></i> Sosyal medya yönetimi (4 platform)
+              </li>
+              <li><i class="fas fa-check"></i> Aylık 40 gönderi</li>
+              <li><i class="fas fa-check"></i> Detaylı analitik rapor</li>
+              <li><i class="fas fa-check"></i> Telefon + Email desteği</li>
+              <li><i class="fas fa-check"></i> Google Ads yönetimi</li>
+              <li><i class="fas fa-check"></i> SEO optimizasyonu</li>
+              <li><i class="fas fa-check"></i> Aylık strateji toplantısı</li>
+            </ul>
+            <button class="pricing-btn">Paketi Seç</button>
+          </div>
+
+          <div class="pricing-card purple-theme">
+            <div class="pricing-header">
+              <div class="pricing-icon">
+                <i class="fas fa-crown"></i>
+              </div>
+              <h3>Kurumsal</h3>
+              <p>Büyük şirketler için</p>
+              <div class="price">
+                <span class="amount">₺7.500</span>
+                <span class="period">/ay</span>
+              </div>
+            </div>
+            <ul class="pricing-features">
+              <li>
+                <i class="fas fa-check"></i> Sosyal medya yönetimi (6+ platform)
+              </li>
+              <li><i class="fas fa-check"></i> Sınırsız gönderi</li>
+              <li><i class="fas fa-check"></i> Gerçek zamanlı analitik</li>
+              <li><i class="fas fa-check"></i> 7/24 öncelikli destek</li>
+              <li><i class="fas fa-check"></i> Google & Facebook Ads</li>
+              <li><i class="fas fa-check"></i> İleri SEO & SEM</li>
+              <li><i class="fas fa-check"></i> Haftalık strateji toplantısı</li>
+              <li><i class="fas fa-check"></i> Özel hesap yöneticisi</li>
+            </ul>
+            <button class="pricing-btn">Paketi Seç</button>
+          </div>
+
+          <div class="pricing-card orange-theme">
+            <div class="pricing-header">
+              <div class="pricing-icon">
+                <i class="fas fa-rocket"></i>
+              </div>
+              <h3>Premium</h3>
+              <p>Tam hizmet dijital ajans</p>
+              <div class="price">
+                <span class="amount">₺12.000</span>
+                <span class="period">/ay</span>
+              </div>
+            </div>
+            <ul class="pricing-features">
+              <li><i class="fas fa-check"></i> Tüm dijital kanallar</li>
+              <li><i class="fas fa-check"></i> Özel içerik üretimi</li>
+              <li><i class="fas fa-check"></i> Video prodüksiyon</li>
+              <li><i class="fas fa-check"></i> Influencer pazarlama</li>
+              <li><i class="fas fa-check"></i> Web geliştirme</li>
+              <li><i class="fas fa-check"></i> E-ticaret çözümleri</li>
+              <li><i class="fas fa-check"></i> Marka danışmanlığı</li>
+              <li><i class="fas fa-check"></i> Özel ekip ataması</li>
+            </ul>
+            <button class="pricing-btn">Paketi Seç</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="iletisim" class="contact">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">İletişime Geçin</h2>
+          <p class="section-description">
+            Projeleriniz hakkında konuşmak ve size nasıl yardımcı
+            olabileceğimizi öğrenmek için bizimle iletişime geçin
+          </p>
+        </div>
+        <div class="contact-content">
+          <div class="contact-info">
+            <div class="contact-item">
+              <div class="contact-icon">
+                <i class="fas fa-envelope"></i>
+              </div>
+              <div class="contact-details">
+                <h4>Email</h4>
+                <p>info@digitalpro.com</p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon">
+                <i class="fas fa-phone"></i>
+              </div>
+              <div class="contact-details">
+                <h4>Telefon</h4>
+                <p>+90 212 555 0123</p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon">
+                <i class="fas fa-map-marker-alt"></i>
+              </div>
+              <div class="contact-details">
+                <h4>Adres</h4>
+                <p>Maslak, İstanbul, Türkiye</p>
+              </div>
+            </div>
+          </div>
+          <div class="contact-form">
+            <form method="POST" action="contact.php">
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Ad Soyad</label>
+                  <input type="text" name="ad" placeholder="Adınızı girin" />
+                </div>
+                <div class="form-group">
+                  <label>Email</label>
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="email@example.com"
+                  />
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Konu</label>
+                <input
+                  type="text"
+                  name="konu"
+                  placeholder="Mesajınızın konusu"
+                />
+              </div>
+              <div class="form-group">
+                <label>Mesaj</label>
+                <textarea
+                  name="mesaj"
+                  rows="5"
+                  placeholder="Mesajınızı buraya yazın..."
+                ></textarea>
+              </div>
+              <button type="submit" name="submit" class="btn btn-primary">
+                Mesaj Gönder <i class="fas fa-paper-plane"></i>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-particles"></div>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h3 class="footer-logo">DigitalPro</h3>
+            <p>
+              Dijital pazarlama dünyasında 10+ yıllık deneyimimizle markanızı
+              zirveye taşıyoruz.
+            </p>
+            <div class="footer-contact">
+              <div class="footer-contact-item">
+                <i class="fas fa-envelope"></i>
+                <span>info@digitalpro.com</span>
+              </div>
+              <div class="footer-contact-item">
+                <i class="fas fa-phone"></i>
+                <span>+90 212 555 0123</span>
+              </div>
+              <div class="footer-contact-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>Maslak, İstanbul, Türkiye</span>
+              </div>
+            </div>
+          </div>
+          <div class="footer-section">
+            <h4>Hizmetlerimiz</h4>
+            <ul>
+              <li>Sosyal Medya Yönetimi</li>
+              <li>Google Ads</li>
+              <li>SEO Optimizasyonu</li>
+              <li>Web Tasarım</li>
+              <li>Marka Danışmanlığı</li>
+              <li>İçerik Üretimi</li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h4>Hızlı Linkler</h4>
+            <ul>
+              <li>Ana Sayfa</li>
+              <li>Hizmetlerimiz</li>
+              <li>Fiyatlandırma</li>
+              <li>Blog</li>
+              <li>Kariyer</li>
+              <li>Gizlilik Politikası</li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h4>Bülten</h4>
+            <p>
+              Dijital pazarlama trendleri ve özel tekliflerden haberdar olun.
+            </p>
+            <div class="newsletter">
+              <input type="email" placeholder="Email adresiniz" />
+              <button><i class="fas fa-paper-plane"></i></button>
+            </div>
+            <div class="social-links">
+              <a href="#"><i class="fab fa-facebook"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-linkedin"></i></a>
+              <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>
+            © 2024 DigitalPro. Tüm hakları saklıdır. | Dijital dünyada fark
+            yaratıyoruz.
+          </p>
+          <button class="scroll-top" onclick="scrollToTop()">
+            <i class="fas fa-arrow-up"></i>
+          </button>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Mobile Navigation
+      const hamburger = document.querySelector(".hamburger");
+      const navMenu = document.querySelector(".nav-menu");
+
+      hamburger.addEventListener("click", () => {
+        hamburger.classList.toggle("active");
+        navMenu.classList.toggle("active");
+      });
+
+      // Close mobile menu when clicking on a link
+      document.querySelectorAll(".nav-menu a").forEach((link) => {
+        link.addEventListener("click", () => {
+          hamburger.classList.remove("active");
+          navMenu.classList.remove("active");
+        });
+      });
+
+      // Scroll animations for services
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("animate");
+          }
+        });
+      }, observerOptions);
+
+      // Observe service cards
+      document.querySelectorAll(".service-card").forEach((card) => {
+        observer.observe(card);
+      });
+
+      // Observe pricing cards
+      document.querySelectorAll(".pricing-card").forEach((card) => {
+        observer.observe(card);
+      });
+
+      // Smooth scroll for navigation links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
+        });
+      });
+
+      // Scroll to top function
+      function scrollToTop() {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      }
+
+      // Navbar background on scroll
+      window.addEventListener("scroll", () => {
+        const navbar = document.querySelector(".navbar");
+        if (window.scrollY > 100) {
+          navbar.style.background = "rgba(0, 0, 0, 0.4)";
+        } else {
+          navbar.style.background = "rgba(0, 0, 0, 0.2)";
+        }
+      });
+
+      // Create floating particles for hero section
+      function createParticles() {
+        const heroParticles = document.querySelector(".hero-particles");
+        const particleCount = 50;
+
+        for (let i = 0; i < particleCount; i++) {
+          const particle = document.createElement("div");
+          particle.style.position = "absolute";
+          particle.style.width = "2px";
+          particle.style.height = "2px";
+          particle.style.background = "rgba(255, 255, 255, 0.3)";
+          particle.style.borderRadius = "50%";
+          particle.style.left = Math.random() * 100 + "%";
+          particle.style.top = Math.random() * 100 + "%";
+          particle.style.animation = `float ${
+            Math.random() * 3 + 2
+          }s ease-in-out infinite`;
+          particle.style.animationDelay = Math.random() * 2 + "s";
+          heroParticles.appendChild(particle);
+        }
+      }
+
+      // Create footer particles
+      function createFooterParticles() {
+        const footerParticles = document.querySelector(".footer-particles");
+        const particleCount = 20;
+
+        for (let i = 0; i < particleCount; i++) {
+          const particle = document.createElement("div");
+          particle.style.position = "absolute";
+          particle.style.width = "1px";
+          particle.style.height = "1px";
+          particle.style.background = "rgba(255, 255, 255, 0.3)";
+          particle.style.borderRadius = "50%";
+          particle.style.left = Math.random() * 100 + "%";
+          particle.style.top = Math.random() * 100 + "%";
+          particle.style.animation = `twinkle ${
+            Math.random() * 3 + 2
+          }s ease-in-out infinite`;
+          particle.style.animationDelay = Math.random() * 2 + "s";
+          footerParticles.appendChild(particle);
+        }
+      }
+
+      // Initialize particles when page loads
+      document.addEventListener("DOMContentLoaded", () => {
+        createParticles();
+        createFooterParticles();
+
+        // Add stagger animation to service cards
+        const serviceCards = document.querySelectorAll(".service-card");
+        serviceCards.forEach((card, index) => {
+          card.style.animationDelay = `${index * 0.3}s`;
+        });
+
+        // Add stagger animation to pricing cards
+        const pricingCards = document.querySelectorAll(".pricing-card");
+        pricingCards.forEach((card, index) => {
+          card.style.animationDelay = `${index * 0.2}s`;
+        });
+      });
+
+      // Pricing card hover effects
+      document.querySelectorAll(".pricing-card").forEach((card) => {
+        card.addEventListener("mouseenter", function () {
+          this.style.transform = "scale(1.05) rotateY(5deg)";
+        });
+
+        card.addEventListener("mouseleave", function () {
+          this.style.transform = "scale(1) rotateY(0deg)";
+        });
+      });
+
+      // Service card wave effect
+      document.querySelectorAll(".service-card").forEach((card) => {
+        card.addEventListener("mouseenter", function () {
+          const wave = document.createElement("div");
+          wave.style.position = "absolute";
+          wave.style.top = "0";
+          wave.style.left = "-100%";
+          wave.style.width = "100%";
+          wave.style.height = "100%";
+          wave.style.background =
+            "linear-gradient(90deg, transparent, rgba(0, 245, 255, 0.2), transparent)";
+          wave.style.transition = "left 0.5s ease";
+          wave.style.pointerEvents = "none";
+
+          this.appendChild(wave);
+
+          setTimeout(() => {
+            wave.style.left = "100%";
+          }, 10);
+
+          setTimeout(() => {
+            if (wave.parentNode) {
+              wave.parentNode.removeChild(wave);
+            }
+          }, 500);
+        });
+      });
+    </script>
+  </body>
+</html>
